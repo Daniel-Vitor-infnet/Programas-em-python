@@ -1,1 +1,7 @@
-pyinstaller --onefile nome
+pyinstaller --onefile nome(aperta tab quando colocar o nome)
+
+
+Bibliotecas para baixar
+pip install python
+pip install python3
+pip install tqdm

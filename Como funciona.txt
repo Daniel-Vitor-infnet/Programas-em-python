@@ -1,5 +1,6 @@
 pyinstaller --onefile nome(aperta tab quando colocar o nome)
 
+pyinstaller --onefile Analisar_Logs
 
 Bibliotecas para baixar
 pip install python

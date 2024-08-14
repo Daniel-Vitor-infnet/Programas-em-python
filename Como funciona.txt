@@ -1,8 +1,9 @@
 pyinstaller --onefile nome(aperta tab quando colocar o nome)
 
-pyinstaller --onefile Analisar_Logs
+pyinstaller --onefile Encontrar_Patas_Arquivos
 
 Bibliotecas para baixar
 pip install python
 pip install python3
 pip install tqdm
+pip install datetime

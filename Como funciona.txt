@@ -1,6 +1,6 @@
 pyinstaller --onefile nome(aperta tab quando colocar o nome)
 
-pyinstaller --onefile Encontrar_Patas_Arquivos
+pyinstaller --onefile Spawn1
 
 Bibliotecas para baixar
 pip install python

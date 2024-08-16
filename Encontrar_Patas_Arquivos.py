@@ -1,77 +1,94 @@
 import os
+from tqdm import tqdm
 
-def listar_arquivos_com_extensao(caminho_pasta, extensao, incluir_subpastas=False):
-    """Lista arquivos e pastas com uma extensão específica."""
+def listar_arquivos_pastas(caminho_pasta, incluir_subpastas=False, apenas_arquivos=False, apenas_pastas=False, esconder_extensao=False):
+    """Lista arquivos e pastas de acordo com as opções fornecidas."""
     resultados = []
+    prefixo_arvore = ""
+
     if incluir_subpastas:
-        for root, dirs, files in os.walk(caminho_pasta):
-            for file in files:
-                if file.endswith(extensao):
-                    resultados.append(os.path.join(root, file))
+        for root, dirs, files in tqdm(os.walk(caminho_pasta), desc="Procurando arquivos e pastas", unit="iteração"):
+            nivel = root.replace(caminho_pasta, "").count(os.sep)
+            indent = " " * 4 * (nivel)
+            prefixo_arvore = indent + "+---"
+            subindent = " " * 4 * (nivel + 1)
+            
+            if not apenas_arquivos:
+                for dir in dirs:
+                    resultados.append(f"{prefixo_arvore}{dir}")
+                    
+            if not apenas_pastas:
+                for file in files:
+                    nome_arquivo = file if not esconder_extensao else os.path.splitext(file)[0]
+                    resultados.append(f"{subindent}{nome_arquivo}")
     else:
-        for item in os.listdir(caminho_pasta):
+        for item in tqdm(os.listdir(caminho_pasta), desc="Procurando arquivos e pastas", unit="arquivo"):
             caminho_completo = os.path.join(caminho_pasta, item)
-            if os.path.isfile(caminho_completo) and item.endswith(extensao):
-                resultados.append(caminho_completo)
+            if os.path.isfile(caminho_completo):
+                if apenas_pastas:
+                    continue
+                nome_arquivo = item if not esconder_extensao else os.path.splitext(item)[0]
+                resultados.append(nome_arquivo)
             elif os.path.isdir(caminho_completo):
-                resultados.append(caminho_completo)
-    return resultados
-
-def listar_arquivos_sem_extensao(caminho_pasta, incluir_subpastas=False):
-    """Lista todos os arquivos e pastas sem se preocupar com a extensão."""
-    resultados = []
-    if incluir_subpastas:
-        for root, dirs, files in os.walk(caminho_pasta):
-            for file in files:
-                resultados.append(os.path.join(root, file))
-            for dir in dirs:
-                resultados.append(os.path.join(root, dir))
-    else:
-        for item in os.listdir(caminho_pasta):
-            caminho_completo = os.path.join(caminho_pasta, item)
-            if os.path.isfile(caminho_completo) or os.path.isdir(caminho_completo):
-                resultados.append(caminho_completo)
+                if apenas_arquivos:
+                    continue
+                resultados.append(item)
     return resultados
 
 def main():
-    print("Escolha uma das opções abaixo:")
-    print("1. Listar todos arquivos e pastas com extensão específica da pasta informada")
-    print("2. Listar todos arquivos e pastas sem se preocupar com a extensão da pasta informada")
-    print("3. Listar todos arquivos e subpastas com extensão específica até o fim da pasta informada")
-    print("4. Listar todos arquivos e subpastas sem se preocupar com a extensão até o fim da pasta informada")
+    while True:
+        print("Deseja listar:")
+        print("1. Apenas arquivos")
+        print("2. Apenas pastas")
+        print("3. Todos")
 
-    escolha = input("Digite o número da sua escolha: ").strip()
+        escolha_tipo = input("Digite o número da sua escolha: ").strip()
 
-    if escolha not in {'1', '2', '3', '4'}:
-        print("Opção inválida. Encerrando o programa.")
-        return
+        if escolha_tipo not in {'1', '2', '3'}:
+            print("Opção inválida. Tente novamente.")
+            continue
 
-    caminho_pasta = input("Informe o caminho da pasta (ex: C:\\Program Files (x86)\\Steam): ").strip()
+        print("Deseja listar arquivos com extensão?")
+        print("1. Sim (mostrar extensão)")
+        print("2. Não (não mostrar extensão)")
 
-    if not os.path.exists(caminho_pasta):
-        print("Caminho inválido. Verifique o caminho informado e tente novamente.")
-        return
+        escolha_extensao = input("Digite o número da sua escolha: ").strip()
 
-    if escolha in {'1', '3'}:
-        extensao = input("Informe a extensão desejada (ex: .txt): ").strip()
-        if not extensao.startswith('.'):
-            extensao = '.' + extensao
+        esconder_extensao = escolha_extensao == '2'
 
-    if escolha == '1':
-        resultados = listar_arquivos_com_extensao(caminho_pasta, extensao, incluir_subpastas=False)
-    elif escolha == '2':
-        resultados = listar_arquivos_sem_extensao(caminho_pasta, incluir_subpastas=False)
-    elif escolha == '3':
-        resultados = listar_arquivos_com_extensao(caminho_pasta, extensao, incluir_subpastas=True)
-    elif escolha == '4':
-        resultados = listar_arquivos_sem_extensao(caminho_pasta, incluir_subpastas=True)
+        print("Deseja listar todos os arquivos, pastas e subpastas até o final?")
+        print("1. Sim")
+        print("2. Não")
 
-    if resultados:
-        print("\nResultados encontrados:")
-        for resultado in resultados:
-            print(resultado)
-    else:
-        print("Nenhum resultado encontrado.")
+        escolha_subpastas = input("Digite o número da sua escolha: ").strip()
+
+        incluir_subpastas = escolha_subpastas == '1'
+
+        caminho_pasta = input("Informe o caminho da pasta (ex: C:\\Program Files (x86)\\Steam): ").strip()
+
+        if not os.path.exists(caminho_pasta):
+            print("Caminho inválido. Verifique o caminho informado e tente novamente.")
+            continue
+
+        apenas_arquivos = escolha_tipo == '1'
+        apenas_pastas = escolha_tipo == '2'
+
+        resultados = listar_arquivos_pastas(caminho_pasta, incluir_subpastas, apenas_arquivos, apenas_pastas, esconder_extensao)
+
+        if resultados:
+            print("\nResultados encontrados:")
+            for resultado in resultados:
+                print(resultado)
+        else:
+            print("Nenhum resultado encontrado.")
+
+        # Perguntar se deseja finalizar o programa
+        deseja_finalizar = input("Deseja finalizar o programa? (sim/não): ").strip().lower()
+        if deseja_finalizar in {'sim', 's'}:
+            print("Finalizando o programa...")
+            break
+        else:
+            print("Continuando a execução...\n")
 
 if __name__ == "__main__":
     main()

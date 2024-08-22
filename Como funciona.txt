@@ -1,6 +1,6 @@
 pyinstaller --onefile nome(aperta tab quando colocar o nome)
 
-pyinstaller --onefile Criar_Trader_Price
+pyinstaller --onefile Extrair_Trader2
 
 Bibliotecas para baixar
 pip install python

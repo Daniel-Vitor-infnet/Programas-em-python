@@ -1,6 +1,6 @@
 pyinstaller --onefile nome(aperta tab quando colocar o nome)
 
-pyinstaller --onefile Extrair_Trader2
+pyinstaller --onefile VerificarDuplicados
 
 Bibliotecas para baixar
 pip install python

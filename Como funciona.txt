@@ -1,6 +1,6 @@
 pyinstaller --onefile nome(aperta tab quando colocar o nome)
 
-pyinstaller --onefile VerificarDuplicados
+pyinstaller --onefile Adicionar_Vida
 
 Bibliotecas para baixar
 pip install python

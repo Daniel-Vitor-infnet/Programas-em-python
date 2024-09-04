@@ -3,6 +3,7 @@ pyinstaller --onefile nome(aperta tab quando colocar o nome)
 pyinstaller --onefile Adicionar_Vida
 
 Bibliotecas para baixar
+start ms-windows-store://pdp/?productid=9P7QFQMJRFP7
 pip install python
 pip install python3
 pip install tqdm

@@ -37,8 +37,8 @@ def verificar_erros_em_logs(pasta_entrada, pasta_saida):
 
 
 # Define os caminhos das pastas
-pasta_entrada = r"C:\Users\Administrador\Desktop\Backup (Pc)\Dayz\Python\Verificar Logs\Entrada"
-pasta_saida = r"C:\Users\Administrador\Desktop\Backup (Pc)\Dayz\Python\Verificar Logs\Saida"
+pasta_entrada = r"G:\Outros computadores\Meu computador (1)\Backup (Pc)\Dayz\Python\Verificar Logs\Entrada"
+pasta_saida = r"G:\Outros computadores\Meu computador (1)\Backup (Pc)\Dayz\Python\Verificar Logs\Saida"
 
 # Chama a função para verificar os logs
 verificar_erros_em_logs(pasta_entrada, pasta_saida)

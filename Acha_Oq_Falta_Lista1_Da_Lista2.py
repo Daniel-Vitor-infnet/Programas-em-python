@@ -8,7 +8,7 @@ caminho_lista_2 = input("Digite o caminho da Lista 2 entre aspas (exemplo: \"C:\
 nome_arquivo_saida = input("Digite o nome do arquivo de saída (sem extensão): ")
 
 # Define o caminho de saída
-caminho_saida = fr"C:\Users\Administrador\Desktop\Backup (Pc)\Dayz\Python\Comparar listas\Resultados\{nome_arquivo_saida}.txt"
+caminho_saida = fr"G:\Outros computadores\Meu computador (1)\Backup (Pc)\Dayz\Python\Comparar listas\Resultados\{nome_arquivo_saida}.txt"
 
 # Abra os arquivos e leia as linhas
 with open(caminho_lista_1, 'r') as file1:

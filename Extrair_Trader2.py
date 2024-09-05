@@ -55,8 +55,8 @@ def extrair_ids(pasta_entrada, pasta_saida):
     print(f'IDs extraídos e salvos em {caminho_saida}')
 
 # Define os caminhos das pastas
-pasta_entrada = r"C:\Users\Administrador\Desktop\Backup (Pc)\Dayz\Python\Extrair Trader2\Entrada"
-pasta_saida = r"C:\Users\Administrador\Desktop\Backup (Pc)\Dayz\Python\Extrair Trader2\Saida"
+pasta_entrada = r"G:\Outros computadores\Meu computador (1)\Backup (Pc)\Dayz\Python\Extrair Trader2\Entrada"
+pasta_saida = r"G:\Outros computadores\Meu computador (1)\Backup (Pc)\Dayz\Python\Extrair Trader2\Saida"
 
 # Chama a função para extrair os IDs e salvar no arquivo de saída
 extrair_ids(pasta_entrada, pasta_saida)

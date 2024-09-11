@@ -1,0 +1,99 @@
+('C:\\Users\\danie\\OneDrive\\Área de Trabalho\\Backup (Pc)\\Programas em '
+ 'python\\Criar exe em python\\build\\Criar_Programas\\Criar_Programas.pkg',
+ {'BINARY': True,
+  'DATA': True,
+  'EXECUTABLE': True,
+  'EXTENSION': True,
+  'PYMODULE': True,
+  'PYSOURCE': True,
+  'PYZ': False,
+  'SPLASH': True,
+  'SYMLINK': False},
+ [('pyi-contents-directory _internal', '', 'OPTION'),
+  ('PYZ-00.pyz',
+   'C:\\Users\\danie\\OneDrive\\Área de Trabalho\\Backup (Pc)\\Programas em '
+   'python\\Criar exe em python\\build\\Criar_Programas\\PYZ-00.pyz',
+   'PYZ'),
+  ('struct',
+   'C:\\Users\\danie\\OneDrive\\Área de Trabalho\\Backup (Pc)\\Programas em '
+   'python\\Criar exe em python\\build\\Criar_Programas\\localpycs\\struct.pyc',
+   'PYMODULE'),
+  ('pyimod01_archive',
+   'C:\\Users\\danie\\OneDrive\\Área de Trabalho\\Backup (Pc)\\Programas em '
+   'python\\Criar exe em '
+   'python\\build\\Criar_Programas\\localpycs\\pyimod01_archive.pyc',
+   'PYMODULE'),
+  ('pyimod02_importers',
+   'C:\\Users\\danie\\OneDrive\\Área de Trabalho\\Backup (Pc)\\Programas em '
+   'python\\Criar exe em '
+   'python\\build\\Criar_Programas\\localpycs\\pyimod02_importers.pyc',
+   'PYMODULE'),
+  ('pyimod03_ctypes',
+   'C:\\Users\\danie\\OneDrive\\Área de Trabalho\\Backup (Pc)\\Programas em '
+   'python\\Criar exe em '
+   'python\\build\\Criar_Programas\\localpycs\\pyimod03_ctypes.pyc',
+   'PYMODULE'),
+  ('pyimod04_pywin32',
+   'C:\\Users\\danie\\OneDrive\\Área de Trabalho\\Backup (Pc)\\Programas em '
+   'python\\Criar exe em '
+   'python\\build\\Criar_Programas\\localpycs\\pyimod04_pywin32.pyc',
+   'PYMODULE'),
+  ('pyiboot01_bootstrap',
+   'C:\\Users\\danie\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python39\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
+   'PYSOURCE'),
+  ('Criar_Programas',
+   'C:\\Users\\danie\\OneDrive\\Área de Trabalho\\Backup (Pc)\\Programas em '
+   'python\\Criar exe em python\\Criar_Programas.py',
+   'PYSOURCE'),
+  ('python39.dll',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\\python39.dll',
+   'BINARY'),
+  ('unicodedata.pyd',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
+  ('_bz2.pyd',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\\DLLs\\_bz2.pyd',
+   'EXTENSION'),
+  ('select.pyd',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\\DLLs\\select.pyd',
+   'EXTENSION'),
+  ('_socket.pyd',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\\DLLs\\_socket.pyd',
+   'EXTENSION'),
+  ('_decimal.pyd',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\\DLLs\\_decimal.pyd',
+   'EXTENSION'),
+  ('_hashlib.pyd',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\\DLLs\\_hashlib.pyd',
+   'EXTENSION'),
+  ('_lzma.pyd',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\\DLLs\\_lzma.pyd',
+   'EXTENSION'),
+  ('VCRUNTIME140.dll',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('libcrypto-1_1.dll',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\\DLLs\\libcrypto-1_1.dll',
+   'BINARY'),
+  ('base_library.zip',
+   'C:\\Users\\danie\\OneDrive\\Área de Trabalho\\Backup (Pc)\\Programas em '
+   'python\\Criar exe em python\\build\\Criar_Programas\\base_library.zip',
+   'DATA')],
+ 'python39.dll',
+ False,
+ False,
+ False,
+ [],
+ None,
+ None,
+ None)

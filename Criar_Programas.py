@@ -1,58 +1,84 @@
 import os
-import time
 import subprocess
-import re
+from pathlib import Path
 
-# 1. Obter o diretório atual
-caminhoInicial = os.getcwd()
-caminhoInicial2 = os.getcwd()
+# Pegar os diretórios.
+caminho_Correto = Path.cwd()
+pasta_Codigos = caminho_Correto.joinpath("Codigos")
+pasta_Programas = caminho_Correto.joinpath("Programas")
+pasta_Build = caminho_Correto.joinpath("build")
+pasta_Spec = caminho_Correto.joinpath("Spec")
 
-# 2. Verificar se há arquivos .py na pasta "Codigos"
-pasta_codigos = os.path.join(caminhoInicial, "Codigos")
-if os.path.exists(pasta_codigos):
-    arquivos_py = [f for f in os.listdir(pasta_codigos) if f.endswith(".py")]
+# Lista com todas as pastas.
+pastas = [pasta_Codigos, pasta_Programas, pasta_Build, pasta_Spec]
+
+# Função para verificar e criar pastas se necessário
+def verificar_e_criar_pastas(pastas):
+    for pasta in pastas:
+        if not pasta.exists():
+            pasta.mkdir(parents=True)  # Cria a pasta e os diretórios pais, se necessário
+            print(f"Pasta '{pasta}' criada.")
+        else:
+            print(f"Pasta '{pasta}' já existe.")
+
+# Função para listar arquivos .py na pasta_Codigos e permitir escolher um número
+def escolher_programa():
+    arquivos_py = list(pasta_Codigos.glob("*.py"))  # Lista todos os arquivos .py na pasta_Codigos
+    
     if not arquivos_py:
-        print("Não existem programas Python na pasta 'Codigos'. O programa será encerrado em 300 segundos.")
-        time.sleep(300)
-        exit()
-    else:
-        print("Programas encontrados:")
-        for idx, arquivo in enumerate(arquivos_py, 1):
-            print(f"{idx}. {arquivo}")
-        # Escolha do programa
-        escolha = int(input("Digite o número do programa que deseja compilar: "))
-        arquivo_escolhido = arquivos_py[escolha - 1]
-else:
-    print(pasta_codigos + " A pasta 'Codigos' não existe.")
-    time.sleep(300)
-    exit()
+        print("Nenhum arquivo .py encontrado na pasta Codigos.")
+        return None
+    
+    # Listar os arquivos com números
+    print("Escolha um arquivo para criar o executável:")
+    for i, arquivo in enumerate(arquivos_py, start=1):
+        print(f"{i}: {arquivo.name}")
+    
+    while True:
+        try:
+            escolha = int(input("Digite o número do arquivo desejado: "))
+            if 1 <= escolha <= len(arquivos_py):
+                return arquivos_py[escolha - 1].name
+            else:
+                print("Número inválido, tente novamente.")
+        except ValueError:
+            print("Entrada inválida, por favor insira um número.")
 
-# 3. Substituir a variável 'caminhoPadrao' por 'caminhoInicial' usando expressão regular
-def substituir_caminho_padrao(arquivo, caminho_inicial):
-    with open(os.path.join(pasta_codigos, arquivo), 'r', encoding='utf-8') as f:
-        conteudo = f.read()
+# Função para criar o executável usando pyinstaller
+def criar_executavel(programaNome):
+    # Caminho completo do arquivo Python que será convertido em exe
+    script_path = pasta_Codigos.joinpath(programaNome)
+    
+    if not script_path.exists():
+        print(f"O arquivo {programaNome} não foi encontrado em {pasta_Codigos}.")
+        return
+    
+    # Comando do PyInstaller com os parâmetros necessários
+    comando = [
+        "pyinstaller",
+        "--onefile",  # Cria um único arquivo .exe
+        "--distpath", str(pasta_Programas),  # Salva o executável em pasta_Programas
+        "--workpath", str(pasta_Build),  # Usa pasta_Build como diretório de compilação
+        "--specpath", str(pasta_Spec),  # Salva o .spec na pasta_Spec
+        str(script_path)  # Caminho do script Python
+    ]
+    
+    # Executa o comando do PyInstaller
+    try:
+        subprocess.run(comando, check=True)
+        print(f"Arquivo executável criado com sucesso em {pasta_Programas}.")
+    except subprocess.CalledProcessError as e:
+        print(f"Erro ao criar o arquivo executável: {e}")
 
-    # Usar expressão regular para substituir qualquer valor existente de caminhoPadrao
-    conteudo_novo = re.sub(r'caminhoPadrao = r".*"', f'caminhoPadrao = r"{caminho_inicial}"', conteudo)
+if __name__ == "__main__":
+    # Verificar e criar pastas necessárias
+    verificar_e_criar_pastas(pastas)
 
-    with open(os.path.join(pasta_codigos, arquivo), 'w', encoding='utf-8') as f:
-        f.write(conteudo_novo)
+    # Escolher o arquivo .py
+    programaNome = escolher_programa()
+    
+    if programaNome:
+        # Criar o executável
+        criar_executavel(programaNome)
 
-substituir_caminho_padrao(arquivo_escolhido, caminhoInicial2)
-
-# 4. Caminhos para Spec e Programas
-pasta_spec = os.path.join(caminhoInicial, "Spec")
-pasta_programas = os.path.join(caminhoInicial, "Programas")
-os.makedirs(pasta_spec, exist_ok=True)
-os.makedirs(pasta_programas, exist_ok=True)
-
-# 5. Remover traços e sublinhados do nome do executável
-nome_exe = arquivo_escolhido.replace("-", " ").replace("_", " ").replace(".py", "")
-
-# Comando PyInstaller
-comando_pyinstaller = f'pyinstaller --onefile --name "{nome_exe}" --distpath "{pasta_programas}" --specpath "{pasta_spec}" {os.path.join(pasta_codigos, arquivo_escolhido)}'
-print(comando_pyinstaller)
-subprocess.run(comando_pyinstaller, shell=True)
-
-
-# print(f"O executável foi gerado com o nome '{nome_exe}.exe' na pasta '{pasta_programas}'.")
+    input("Aperte qualquer tecla para sair")
